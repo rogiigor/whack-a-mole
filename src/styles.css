@@ -27,6 +27,7 @@ h2 {
 #start {
     text-align: center;
     font-size: 30px;
+    cursor: pointer;
 }
 
 #timer{
