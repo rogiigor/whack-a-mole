@@ -1,7 +1,6 @@
 const holes = document.querySelectorAll('.hole');
 const moles = document.querySelectorAll('.mole');
 const startButton = document.querySelector('#start');
-// TODO: Add the missing query selectors:
 const score = document.querySelector("#score");
 const timerDisplay = document.querySelector("#timer");
 
@@ -85,13 +84,6 @@ function chooseHole(holes) {
 * return the timeoutId if the game continues or the string "game stopped"
 * if the game is over.
 *
-*  // if time > 0:
-*  //   timeoutId = showUp()
-*  //   return timeoutId
-*  // else
-*  //   gameStopped = stopGame()
-*  //   return gameStopped
-*
 */
 function gameOver() {
   if (time > 0) {
@@ -142,7 +134,6 @@ function showAndHide(hole, delay){
 *
 */
 function toggleVisibility(hole){
-  // TODO: add hole.classList.toggle so that it adds or removes the 'show' class.
   hole.classList.toggle("show");
   return hole;
 }
@@ -182,9 +173,10 @@ function clearScore() {
 *
 */
 function updateTimer() {
-  // TODO: Write your code here.
-  // hint: this code is provided to you in the instructions.
-  
+  if (time > 0) {
+    time -= 1;
+    timerDisplay.textContent = time;
+  }
   return time;
 }
 
@@ -195,8 +187,7 @@ function updateTimer() {
 *
 */
 function startTimer() {
-  // TODO: Write your code here
-  // timer = setInterval(updateTimer, 1000);
+  timer = setInterval(updateTimer, 1000);
   return timer;
 }
 
