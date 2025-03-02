@@ -32,6 +32,11 @@ h2 {
 
 #timer{
     color: white;
+    margin-left: 40px;
+}
+
+#score {
+  margin-right: 40px;
 }
 
 .grid {
@@ -78,3 +83,17 @@ h2 {
   top: 0;
   transform: scale(1.1);
 }
+
+select, input {
+  height: 35px;
+  text-align: center;
+  background-color: rgb(139, 118, 139);
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.score-and-timer {
+  display: flex;
+  justify-content: center;
+}
+
+
