@@ -3,14 +3,14 @@ const moles = document.querySelectorAll('.mole');
 const startButton = document.querySelector('#start');
 const score = document.querySelector("#score");
 const timerDisplay = document.querySelector("#timer");
-const molesoong = new Audio("../assets/molesong.mp3");
-const hit = new Audio("../assets/hit.mp3");
+
+let molesoong = new Audio("../assets/molesong.mp3?raw=true");
+let hit = new Audio("../assets/hit.mp3?raw=true");
 
 let time = 0;
 let timer;
 let lastHole = 0;
 let points = 0;
-let difficulty = "hard";
 
 /**
  * Generates a random integer within a range.
@@ -107,6 +107,7 @@ function gameOver() {
 *
 */
 function showUp() {
+  let difficulty = getDifficultyLevel();
   let delay = setDelay(difficulty);
   const hole = chooseHole(holes);
   return showAndHide(hole, delay);
@@ -287,8 +288,14 @@ function stopAudio(audioObject) {
   audioObject.pause();
 }
 
-startButton.addEventListener("click", startGame);
+/* function to get difficulty level */
+function getDifficultyLevel() {
+  const level = document.querySelector("#dificulty").value;
+  difficulty = level;
+  return difficulty;
+}
 
+startButton.addEventListener("click", startGame);
 
 // Please do not modify the code below.
 // Used for testing purposes.
