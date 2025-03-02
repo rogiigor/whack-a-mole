@@ -4,7 +4,7 @@ const startButton = document.querySelector('#start');
 const score = document.querySelector("#score");
 const timerDisplay = document.querySelector("#timer");
 const molesoong = new Audio("../assets/molesong.mp3");
-const hit = new Audio("../assets/hit.mp3");
+const hit = new Audio("https://github.com/rogiigor/whack-a-mole/blob/main/assets/hit.mp3");
 
 let time = 0;
 let timer;
