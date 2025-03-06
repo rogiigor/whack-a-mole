@@ -68,7 +68,7 @@ h2 {
 }
 
 .mole {
-  background:url('../assets/mole.png') bottom center no-repeat;
+  background:url('https://raw.githubusercontent.com/rogiigor/whack-a-mole/refs/heads/main/assets/mole.png') bottom center no-repeat;
   background-size: 40%;
   position: absolute;
   top: 100%;

@@ -143,8 +143,7 @@ function setMoleBackgroundImage(hole) {
   const flagMole = randomInteger(0, 2);
   if (flagMole === 0 || flagMole === 1) {
       if (style.includes("mole2.png")) {
-        const newStyle = style.replace("mole2.png","mole.png");
-        mole.style.background = newStyle;
+        mole.style.background = backgroundMole;
       }
   } else if (flagMole === 2) {
     console.log("In flag 2 " + style);
