@@ -56,7 +56,7 @@ h2 {
 
 .hole:after {
   display: block;
-  background: url("../assets/hole.png") bottom center no-repeat;
+  background: url('../assets/hole.png') bottom center no-repeat;
   background-size:contain;
   content:'';
   width: 100%;

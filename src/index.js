@@ -6,7 +6,7 @@ const timerDisplay = document.querySelector("#timer");
 
 let molesoong = new Audio("https://github.com/rogiigor/whack-a-mole/blob/main/assets/molesong.mp3?raw=true");
 let hit = new Audio("https://github.com/rogiigor/whack-a-mole/blob/main/assets/hit.mp3?raw=true");
-let wrongHit = new Audio("../assets/wrongHit.mp3?raw=true");
+ let wrongHit = new Audio("https://github.com/rogiigor/whack-a-mole/blob/main/assets/wrongHit.mp3?raw=true");
 const backgroundMole = "url('../assets/mole.png') bottom center no-repeat";
 const backgroundMole2 = "url('../assets/mole2.png') bottom center no-repeat";
 
@@ -126,8 +126,8 @@ function showUp() {
 */
 function showAndHide(hole, delay){
   let mole = hole.firstElementChild;
-  let flagMole = randomInteger(0, 1);
-  if (flagMole === 0) {
+  let flagMole = randomInteger(0, 2);
+  if (flagMole === 0 || flagMole === 1) {
     mole = setMoleImage(mole, backgroundMole);
   } else {
     mole = setMoleImage(mole, backgroundMole2);
@@ -149,7 +149,6 @@ function showAndHide(hole, delay){
  */
 function setMoleImage(mole, background) {
   mole.style.setProperty('background', background);
-  // set other properties without change
   mole.style.setProperty('background-size', "40%");
   return mole;
 }
@@ -190,6 +189,9 @@ function updateScore() {
 function reduceScore() {
   if (points > 0) {
     points--;
+    score.textContent = points;
+    return points;
+  } else {
     score.textContent = points;
     return points;
   }
@@ -241,7 +243,9 @@ function startTimer() {
 *
 */
 function whack(event) {
-  const background = event.target.style.background;
+  const mole = event.target;
+  const style = getComputedStyle(mole);
+  const background = style.getPropertyValue('background');
   if (background.includes("mole.png")) {
     points = updateScore();
     playAudio(hit);
