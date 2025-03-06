@@ -6,9 +6,7 @@ const timerDisplay = document.querySelector("#timer");
 
 let molesoong = new Audio("https://github.com/rogiigor/whack-a-mole/blob/main/assets/molesong.mp3?raw=true");
 let hit = new Audio("https://github.com/rogiigor/whack-a-mole/blob/main/assets/hit.mp3?raw=true");
- let wrongHit = new Audio("https://github.com/rogiigor/whack-a-mole/blob/main/assets/wrongHit.mp3?raw=true");
-const backgroundMole = "url('../assets/mole.png') bottom center no-repeat";
-const backgroundMole2 = "url('../assets/mole2.png') bottom center no-repeat";
+let wrongHit = new Audio("https://github.com/rogiigor/whack-a-mole/blob/main/assets/wrongHit.mp3?raw=true");
 
 let time = 0;
 let timer;
@@ -125,13 +123,7 @@ function showUp() {
 *
 */
 function showAndHide(hole, delay){
-  let mole = hole.firstElementChild;
-  let flagMole = randomInteger(0, 2);
-  if (flagMole === 0 || flagMole === 1) {
-    mole = setMoleImage(mole, backgroundMole);
-  } else {
-    mole = setMoleImage(mole, backgroundMole2);
-  }
+  setMoleBackgroundImage(hole);
   toggleVisibility(hole);
   const timeoutID = setTimeout(() => {
     toggleVisibility(hole);
@@ -142,15 +134,24 @@ function showAndHide(hole, delay){
 
 /**
  * 
- * function to set background to mole class
- * mole - element for mole class
- * background - string to set for background
- * changed mole element 
+ * set background image of mole
  */
-function setMoleImage(mole, background) {
-  mole.style.background = background;
-  mole.style.backgroundSize = "40%";
-  return mole;
+function setMoleBackgroundImage(hole) {
+  let mole = hole.firstElementChild;
+  let style = getComputedStyle(mole).getPropertyValue('background');
+
+  let flagMole = randomInteger(0, 2);
+  if (flagMole === 0 || flagMole === 1) {
+      if (style.includes("mole2.png")) {
+        const newStyle = style.replace("mole2.png","mole.png");
+        mole.style.background = newStyle;
+      }
+  } else if (flagMole === 2) {
+    if (style.includes("mole.png")) {
+      const newStyle = style.replace("mole.png","mole2.png");
+      mole.style.background = newStyle;
+    }
+  }
 }
 
 /**
