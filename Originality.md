@@ -7,7 +7,7 @@ I was able to make use of audio in the game.
 2. When hitting correct mole, `hit` sound plays
 3. When hitting wrong mole, `wrong hit` sound is playsing
 
-#### 3. Additional features
+#### 3. `Additional features`
 
 I was able to add some additional features
 1. I added user control select to get set `user difficulty`
@@ -16,7 +16,7 @@ I was able to add some additional features
     Since I implemented this functionality in `whack(event)` method,
     it breaks test that expects whack to only `increase` score.
 
-#### 4. Change the look of the game
+#### 4. `Change the look of the game`
 While working on #3, I changed css view of the game
 1. User control difficulty select has additional styling for `select` and `input` elements
 2. I put score and counter on the same level using `flex` styling.
