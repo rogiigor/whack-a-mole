@@ -6,11 +6,15 @@ const timerDisplay = document.querySelector("#timer");
 
 let molesoong = new Audio("https://github.com/rogiigor/whack-a-mole/blob/main/assets/molesong.mp3?raw=true");
 let hit = new Audio("https://github.com/rogiigor/whack-a-mole/blob/main/assets/hit.mp3?raw=true");
+let wrongHit = new Audio("../assets/wrongHit.mp3?raw=true");
+const backgroundMole = "url('../assets/mole.png') bottom center no-repeat";
+const backgroundMole2 = "url('../assets/mole2.png') bottom center no-repeat";
 
 let time = 0;
 let timer;
 let lastHole = 0;
 let points = 0;
+let flagMole = 0;
 
 /**
  * Generates a random integer within a range.
@@ -122,12 +126,34 @@ function showUp() {
 *
 */
 function showAndHide(hole, delay){
+  let mole = hole.firstElementChild;
+  if (flagMole === 0) {
+    mole = setMoleImage(mole, backgroundMole);
+    flagMole = 1;
+  } else {
+    mole = setMoleImage(mole, backgroundMole2);
+    flagMole = 0;
+  }
   toggleVisibility(hole);
   const timeoutID = setTimeout(() => {
     toggleVisibility(hole);
     gameOver();
   }, delay);
   return timeoutID;
+}
+
+/**
+ * 
+ * function to set background to mole class
+ * mole - element for mole class
+ * background - string to set for background
+ * changed mole element 
+ */
+function setMoleImage(mole, background) {
+  mole.style.setProperty('background', background);
+  // set other properties without change
+  mole.style.setProperty('background-size', "40%");
+  return mole;
 }
 
 /**
@@ -155,6 +181,20 @@ function updateScore() {
   points++;
   score.textContent = points;
   return points;
+}
+
+/**
+ * 
+ *  This function decrements the points global variable and updates the scoreboard
+ *  that defined in index.html.
+ * 
+ */
+function reduceScore() {
+  if (points > 0) {
+    points--;
+    score.textContent = points;
+    return points;
+  }
 }
 
 /**
@@ -203,8 +243,14 @@ function startTimer() {
 *
 */
 function whack(event) {
-  points = updateScore();
-  playAudio(hit);
+  const background = event.target.style.background;
+  if (background.includes("mole.png")) {
+    points = updateScore();
+    playAudio(hit);
+  } else if (background.includes("mole2.png")) {
+    points = reduceScore();
+    playAudio(wrongHit);
+  }
   return points;
 }
 
@@ -215,9 +261,9 @@ function whack(event) {
 */
 function setEventListeners(){
   moles.forEach((mole) => {
-    mole.addEventListener("click", whack);
-  })
-
+      mole.addEventListener("click", whack);
+  });
+  
   return moles;
 }
 
@@ -254,6 +300,8 @@ function stopGame(){
 
  * 3. Sets up event listeners on the moles using `setEventListeners()`.
 
+ * 3.a. Sets up event listeners on wrong moles using `setEventListenersWrongMole()`.
+
  * 4. Starts the game timer by calling `startTimer()`.  
 
  * 5. Begins the game loop by calling `showUp()` to display moles. 
@@ -272,23 +320,39 @@ function startGame(){
   return "game started";
 }
 
-/* function to paly music */
+/**
+ * 
+ * function to paly music
+ * 
+ */
 function playAudio(audioObject) {
   audioObject.play();
 }
 
-/* function to play audio indefinetely */
+/**
+ * 
+ *  function to play audio indefinetely
+ * 
+ */
 function loopAudio(audioObject) {
   audioObject.loop = true;
   playAudio(audioObject);
 }
 
-/* function to stop palying music */
+/**
+ * 
+ *  function to stop palying music
+ * 
+ */
 function stopAudio(audioObject) {
   audioObject.pause();
 }
 
-/* function to get difficulty level */
+/**
+ * 
+ * function to get difficulty level 
+ * 
+ */
 function getDifficultyLevel() {
   const level = document.querySelector("#dificulty").value;
   difficulty = level;
