@@ -137,19 +137,22 @@ function showAndHide(hole, delay){
  * set background image of mole
  */
 function setMoleBackgroundImage(hole) {
-  let mole = hole.firstElementChild;
-  let style = getComputedStyle(mole).getPropertyValue('background');
+  const mole = hole.firstElementChild;
+  const style = getComputedStyle(mole).getPropertyValue('background');
 
-  let flagMole = randomInteger(0, 2);
+  const flagMole = randomInteger(0, 2);
   if (flagMole === 0 || flagMole === 1) {
       if (style.includes("mole2.png")) {
         const newStyle = style.replace("mole2.png","mole.png");
         mole.style.background = newStyle;
       }
   } else if (flagMole === 2) {
+    console.log("In flag 2 " + style);
     if (style.includes("mole.png")) {
       const newStyle = style.replace("mole.png","mole2.png");
+      console.log("in flag 2, after replace: " + newStyle);
       mole.style.background = newStyle;
+      console.log("in style 2, mole: " + mole);
     }
   }
 }
