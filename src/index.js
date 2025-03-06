@@ -148,8 +148,8 @@ function showAndHide(hole, delay){
  * changed mole element 
  */
 function setMoleImage(mole, background) {
-  mole.style.setProperty('background', background);
-  mole.style.setProperty('background-size', "40%");
+  mole.style.background = background;
+  mole.style.backgroundSize = "40%";
   return mole;
 }
 
