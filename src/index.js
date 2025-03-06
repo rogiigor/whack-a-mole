@@ -14,7 +14,6 @@ let time = 0;
 let timer;
 let lastHole = 0;
 let points = 0;
-let flagMole = 0;
 
 /**
  * Generates a random integer within a range.
@@ -127,12 +126,11 @@ function showUp() {
 */
 function showAndHide(hole, delay){
   let mole = hole.firstElementChild;
+  let flagMole = randomInteger(0, 1);
   if (flagMole === 0) {
     mole = setMoleImage(mole, backgroundMole);
-    flagMole = 1;
   } else {
     mole = setMoleImage(mole, backgroundMole2);
-    flagMole = 0;
   }
   toggleVisibility(hole);
   const timeoutID = setTimeout(() => {
