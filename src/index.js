@@ -152,7 +152,7 @@ function setMoleBackgroundImage(hole) {
       const newStyle = style.replace("mole.png","mole2.png");
       console.log("in flag 2, after replace: " + newStyle);
       mole.style.background = newStyle;
-      console.log("in style 2, mole: " + mole);
+      console.log("in style 2, hole: " + hole);
     }
   }
 }
